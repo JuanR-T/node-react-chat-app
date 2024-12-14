@@ -30,10 +30,10 @@ export const signup: any = async (req: Request, res: Response) => {
 
         if (newUser) {
             await newUser.save();
-            generateToken(newUser._id.toString(), res)
+            generateToken(newUser._id, res)
 
             res.status(201).json({
-                _id: newUser._id.toString(),
+                _id: newUser._id,
                 fullName: newUser.fullName,
                 email: newUser.email,
                 profilePicture: newUser.profilePicture
@@ -61,7 +61,7 @@ export const login: any = async (req: Request, res: Response) => {
             return res.status(400).json({message: "Invalid credentials"});
         }
         
-        generateToken(user._id.toString(), res);
+        generateToken(user._id, res);
 
         res.status(200).json({
             _id: user._id, 
@@ -102,3 +102,12 @@ export const updateProfile: any = async (req: any, res: Response) => {
         res.status(500).json({message: "Internal Server Error"});
     }
 };
+
+export const checkAuth: any = (req: any, res: Response) => {
+    try {
+        res.status(200).json(req.user);
+    } catch (error: unknown) {
+        console.error("Error in checkAuth controller", error instanceof Error ? error.message : 'Unknown error');
+        res.status(500).json({message: "Internal Server Error"});
+    }
+}

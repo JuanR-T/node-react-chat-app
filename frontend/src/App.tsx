@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
@@ -10,22 +11,29 @@ import SignupPage from './pages/SignupPage'
 import { useAuthStore } from './store/useAuthStore'
 
 const App = () => {
-  const { checkAuth } = useAuthStore();
+  const { isCheckingAuth, authUser, checkAuth } = useAuthStore();
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
+  console.log("authUSer", { authUser })
+
+  if (isCheckingAuth && !authUser) return (
+    <span className="loading loading-dots loading-md"></span>
+  )
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+        <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to="/" />} />
+        <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+        <Route path="/settings" element={authUser ? <SettingsPage /> : <Navigate to="/login" />} />
+        <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
       </Routes>
+
+      <Toaster />
       <div className='text-green-700'>
         Hello worldies
       </div>
@@ -35,4 +43,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

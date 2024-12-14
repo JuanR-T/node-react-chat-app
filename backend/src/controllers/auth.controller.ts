@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
+import cloudinary from "../lib/cloudinary";
 import { generateToken } from "../lib/utils";
 import User from "../models/user.model";
 
@@ -83,6 +84,21 @@ export const logout: any = (req: Request, res: Response) => {
     }
 }
 
-export const updateProfile: any = async (req: Request, res: Response) => {
+export const updateProfile: any = async (req: any, res: Response) => {
+    try {
+        const {profilePicture} = req.body;
+        const userId = req.user._id;
 
+        if (!profilePicture) {
+            return res.status(400).json({message: "Profile picture is required"});
+        }
+
+        const uploadResponse = await cloudinary.uploader.upload(profilePicture);
+        const updatedUser = await User.findByIdAndUpdate(userId, {profilePicture: uploadResponse.secure_url}, {new: true});
+
+        res.status(200).json(updatedUser);
+    } catch (error: unknown) {
+        console.error("Error in update controller", error instanceof Error ? error.message : 'Unknown error');
+        res.status(500).json({message: "Internal Server Error"});
+    }
 };

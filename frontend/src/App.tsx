@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect } from 'react'
+import { Toaster } from 'react-hot-toast'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
+import Navbar from './components/Navbar'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import ProfilePage from './pages/ProfilePage'
+import SettingsPage from './pages/SettingsPage'
+import SignupPage from './pages/SignupPage'
+import { useAuthStore } from './store/useAuthStore'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const { isCheckingAuth, authUser, checkAuth } = useAuthStore();
 
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  console.log("authUSer", { authUser })
+
+  if (isCheckingAuth && !authUser) return (
+    <span className="loading loading-dots loading-md"></span>
+  )
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+        <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to="/" />} />
+        <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+        <Route path="/settings" element={authUser ? <SettingsPage /> : <Navigate to="/login" />} />
+        <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
+      </Routes>
+
+      <Toaster />
+      <div className='text-green-700'>
+        Hello worldies
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button className="btn btn-outline btn-info btn-xs sm:btn-sm md:btn-md lg:btn-lg">Responsive button</button>
     </>
+
   )
 }
 
-export default App
+export default App;

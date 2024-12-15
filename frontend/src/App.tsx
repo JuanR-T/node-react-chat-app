@@ -12,13 +12,11 @@ import { useAuthStore } from './store/useAuthStore'
 import useThemeStore from './store/useThemeStore'
 
 const App = () => {
-  const { isCheckingAuth, authUser, checkAuth } = useAuthStore();
+  const { isCheckingAuth, authUser, checkAuth, onlineUsers } = useAuthStore();
   const { theme } = useThemeStore();
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-
-  console.log("authUSer", { authUser })
 
   if (isCheckingAuth && !authUser) return (
     <span className="loading loading-dots loading-md"></span>

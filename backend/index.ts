@@ -3,10 +3,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import path from "path";
-import { connectDB } from "./lib/db";
-import { app, server } from "./lib/socket";
-import authRoutes from "./routes/auth.route";
-import messageRoutes from "./routes/message.route";
+import { connectDB } from "./src/lib/db";
+import { app, server } from "./src/lib/socket";
+import authRoutes from "./src/routes/auth.route";
+import messageRoutes from "./src/routes/message.route";
 
 dotenv.config()
 

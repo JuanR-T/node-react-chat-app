@@ -9,21 +9,20 @@ import ProfilePage from './pages/ProfilePage'
 import SettingsPage from './pages/SettingsPage'
 import SignupPage from './pages/SignupPage'
 import { useAuthStore } from './store/useAuthStore'
+import useThemeStore from './store/useThemeStore'
 
 const App = () => {
-  const { isCheckingAuth, authUser, checkAuth } = useAuthStore();
-
+  const { isCheckingAuth, authUser, checkAuth, onlineUsers } = useAuthStore();
+  const { theme } = useThemeStore();
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-
-  console.log("authUSer", { authUser })
 
   if (isCheckingAuth && !authUser) return (
     <span className="loading loading-dots loading-md"></span>
   )
   return (
-    <>
+    <div data-theme={theme}>
       <Navbar />
       <Routes>
         <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
@@ -34,11 +33,7 @@ const App = () => {
       </Routes>
 
       <Toaster />
-      <div className='text-green-700'>
-        Hello worldies
-      </div>
-      <button className="btn btn-outline btn-info btn-xs sm:btn-sm md:btn-md lg:btn-lg">Responsive button</button>
-    </>
+    </div>
 
   )
 }

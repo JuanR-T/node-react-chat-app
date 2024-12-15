@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 import express from "express";
 import path from "path";
 import { connectDB } from "./lib/db.js";
-import { app, server } from "./lib/socket";
-import authRoutes from "./routes/auth.route";
-import messageRoutes from "./routes/message.route";
+import { app, server } from "./lib/socket.js";
+import authRoutes from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js";
 
 dotenv.config()
 

@@ -1,6 +1,6 @@
 import { NextFunction, Response } from "express";
 import jwt from "jsonwebtoken";
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 
 export const protectedRoute: any = async (req: any, res: Response, next: NextFunction) => {
     try {

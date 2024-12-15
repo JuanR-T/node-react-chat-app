@@ -2,18 +2,16 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "node",
-    "esModuleInterop": true,
     "target": "ES2022",
-    "strict": true,
     "outDir": "./dist",
     "rootDir": "./src",
+    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "*": ["node_modules/*", "src/*"]
+    }
   },
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "index.ts"],
   "exclude": ["node_modules"]
 }

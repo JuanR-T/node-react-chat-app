@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
-import cloudinary from "../lib/cloudinary";
+import cloudinary from "../lib/cloudinary.js";
 import { generateToken } from "../lib/utils.js";
 import User from "../models/user.model.js";
 

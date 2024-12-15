@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 
-export const useThemeStore: any = create((set) => ({
+const useThemeStore: any = create((set) => ({
     theme: localStorage.getItem("chat-theme") || "forest",
     setTheme: (theme: any) => {
         localStorage.setItem("chat-theme", theme);
@@ -9,4 +9,4 @@ export const useThemeStore: any = create((set) => ({
     }
 }));
 
-export default useThemeStore
+export default useThemeStore;

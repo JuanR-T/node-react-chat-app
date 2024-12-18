@@ -1,4 +1,4 @@
-<h1 align="center" style="font-weight: bold;">NodeTalk 💻</h1>
+<h1 align="center" style="font-weight: bold;">NodeTalk :left_speech_bubble:</h1>
 
 <p align="center">
 <a href="#technologies">Technologies</a>
@@ -12,7 +12,7 @@
 
 <p align="center"><img width="1173" alt="image" src="https://github.com/user-attachments/assets/03242216-7148-4637-a9a3-16099610fc36" />
 
-<a href="https://node-react-chat-app-6cwi.onrender.com/">📱 Visit the deployed Project</a>
+<h1 align="center"><a href="https://node-react-chat-app-6cwi.onrender.com/">:triangular_flag_on_post: Visit the deployed Project</a></h1>
 </p>
 
 <p align="center">

@@ -1,10 +1,8 @@
-<h1 align="center" style="font-weight: bold;">node-react-chat-app 💻</h1>
+<h1 align="center" style="font-weight: bold;">NodeTalk 💻</h1>
 
 <p align="center">
-<a href="#tech">Technologies</a>
+<a href="#technologies">Technologies</a>
 <a href="#started">Getting Started</a>
-<a href="#colab">Collaborators</a>
-<a href="#contribute">Contribute</a> 
 </p>
 
 
@@ -12,16 +10,12 @@
 
 
 
-<p align="center"><img width="1173" alt="image" src="https://github.com/user-attachments/assets/f0eb8e7c-5b9d-4a37-b6e3-94ba90eee329" />
+<p align="center"><img width="1173" alt="image" src="https://github.com/user-attachments/assets/03242216-7148-4637-a9a3-16099610fc36" />
 
 <a href="https://node-react-chat-app-6cwi.onrender.com/">📱 Visit the deployed Project</a>
 </p>
 
-<h2 id="layout">🎨 Layout</h2>
-
 <p align="center">
-
-![Uploading image.png…]()
 
 </p>
 
@@ -45,19 +39,20 @@ Here you list all prerequisites necessary for running your project. For example:
 
 <h3>Cloning</h3>
 
-How to clone your project
+Clone the project
 
 ```bash
-git clone your-project-url-in-github
+git clone https://github.com/JuanR-T/node-react-chat-app.git
 ```
 
 <h3>Starting</h3>
 
-How to start your project
+Start the project like this
 
 ```bash
-cd project-name
-npm some-command-to-run
+npm run build
+npm run dev --prefix backend
+npm run dev --prefix frontend
 ```
 
 <h3>Documentations that might help</h3>
